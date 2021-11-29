@@ -53,7 +53,7 @@ class mcp9808:
     reg_.write_u16_be SENSOR_CONFIG_REG_ 0x0000
 
   /**
-  Enables the sensor
+  Enables the sensor. Note that the sensor is enabled by default after power-on.
   */
   enable:
     reg_.write_u16_be SENSOR_CONFIG_REG_ 0x0000
@@ -155,6 +155,5 @@ main:
     if temp_sensor.read_alert == 1:
         print_ "High temperature detected!"
         sleep --ms=5000
-        temp_sensor.clear_interrupt
 
   temp_sensor.disable
