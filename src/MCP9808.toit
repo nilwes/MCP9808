@@ -67,13 +67,13 @@ class mcp9808:
   /**
   Enables the sensor. Note that the sensor is enabled by default after power-on.
   */
-  enable:
+  enable -> none:
     reg_.write_u16_be SENSOR_CONFIG_REG_ 0x0000
   
   /**
   Disables the sensor and puts it in low-power mode
   */
-  disable:
+  disable -> none:
     reg_status := reg_.read_u16_be SENSOR_CONFIG_REG_
     reg_.write_u16_be SENSOR_CONFIG_REG_  (reg_status | 0b0000_0001_0000_0000) //0x0100 Shutdown (Low-power mode)
 
@@ -116,7 +116,7 @@ class mcp9808:
   NOTE: The chip alert output pin (pin 3) is active LOW and a pull-up resistor is required. See 
   MCP9808 data sheet, page 30, figure 5-9.
   */
-  set_alert 
+  set_alert -> none
       --lower/int       = 0 
       --upper/int       = 0
       --critical/int    = 0
@@ -147,5 +147,5 @@ class mcp9808:
   /**
   Clears the interrupt bit.
   */
-  clear_interrupt:
+  clear_interrupt -> none:
     reg_.write_u16_be SENSOR_CONFIG_REG_ ((reg_.read_u16_be SENSOR_CONFIG_REG_) | 0x0020)
