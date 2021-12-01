@@ -15,6 +15,7 @@ main:
     --scl=gpio.Pin 22
 
   int_pin := gpio.Pin 17 --input // NOTE: This pin requires a pull-up resistor
+                                 // Connect this GPIO to the Alert pin of your MCP9808
 
   thermometer := bus.device I2C_ADDRESS
   temp_sensor = mcp9808 thermometer --resolution = "0.25"
