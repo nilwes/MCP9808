@@ -22,7 +22,7 @@ class mcp9808:
   static UPPER_ALERT_REG_       ::=  0b0000_0010
   static LOWER_ALERT_REG_       ::=  0b0000_0011
   static CRITICAL_ALERT_REG_    ::=  0b0000_0100
-  static SENSOR_RESOLUTION_REG  ::=  0b0000_1000
+  static SENSOR_RESOLUTION_REG_  ::=  0b0000_1000
   
   static SENSOR_RESOLUTION_ ::= { // Temperature trigger hysteresis in degrees Celsius
       "0.5"     : 0b0000_0000,
@@ -78,7 +78,7 @@ class mcp9808:
     reg_.write_u16_be SENSOR_CONFIG_REG_  (reg_status | 0b0000_0001_0000_0000) //0x0100 Shutdown (Low-power mode)
 
   /**
-  Reads the temperature.
+  Reads the temperature and returns it in degrees Celsius.
   */
   read_temperature -> float:
     temp/float := 0.0
