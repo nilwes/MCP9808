@@ -61,7 +61,7 @@ class mcp9808:
     if (reg_.read_u16_be MFCTR_ID_REG_)  != MFCTR_ID_: 
       throw "INVALID_MANUFACTURER_ID"
     
-    reg_.write_u8 SENSOR_RESOLUTION_REG SENSOR_RESOLUTION_[resolution]
+    reg_.write_u8 SENSOR_RESOLUTION_REG_ SENSOR_RESOLUTION_[resolution]
     reg_.write_u16_be SENSOR_CONFIG_REG_ 0x0000
   
   /**
@@ -129,7 +129,7 @@ class mcp9808:
     reg_.write_i16_be CRITICAL_ALERT_REG_ (critical << 4)
 
   /**
-  Reads the temperature alert bit. If the temperature boundaries has been exceeded, the method returns $true. If not, it returns $false
+  Reads the temperature alert bit. If the temperature boundaries has been exceeded, the method returns True. If not, it returns False
   */
   read_alert -> bool:
     if (((reg_.read_u16_be SENSOR_CONFIG_REG_) & 0x0010) >> 4) == 1:
